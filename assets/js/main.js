@@ -7,28 +7,7 @@ function getETAInfo(start, end) {
     })
 }
 
-
-function calcRoute() {
-    var directionsService = new google.maps.DirectionsService();
-    var start = "St. Louis Arch"
-    var end = "St. Louis City Museum"
-    var request = {
-        origin: start,
-        destination: end,
-        travelMode: "DRIVING"
-    };
-
-    directionsService.route(request, function(result, status){
-        if (status == "OK"){
-            console.log(result);
-            console.log(result.routes[0].legs[0].duration.text)
-        }
-    });
-};
-
-
 var getEventsList = function(city, startDateTime) {
-    var result;
     var startDateTime = startDateTime + "T00:00:00Z"
     var eventUrl = "https://app.ticketmaster.com/discovery/v2/events.json?apikey="
                     + ticketMasterCred.CONSUMER_KEY
@@ -40,11 +19,8 @@ var getEventsList = function(city, startDateTime) {
         if (response.ok) {
             response.json().then(data =>{
                 eventsList = data._embedded.events;
-
                 for (var i = 0; i<eventsList.length; i++) {
                     createEventCard(eventsList[i])
-
-
                 }
             })
         }
@@ -56,10 +32,10 @@ var getEventsList = function(city, startDateTime) {
 
 var createEventCard = function(event) {
     console.log(event)
+    console.log(event.name)
     var eventCardEl = $("<div>").addClass("card horizontal")
     var cardImageEl = $("<div>").addClass("card-image")
-    var ImageEl = $("<img>")
-                    .attr("src", event.images[0].url)
+    var ImageEl = $("<img>").attr("src", event.images[0].url)
     var eventCardStacked =$("<div>").addClass("card-stacked")
     var cardContentEl = $("<div>").addClass("card-content")
     var eventNameEl = $("<p>").text(event.name)
@@ -88,4 +64,39 @@ var createEventCard = function(event) {
 
 }
 
-var events = getEventsList("Chicago", "2022-05-05");
+
+function initMap() {
+    var directionsService = new google.maps.DirectionsService();
+    var directionsRenderer = new google.maps.DirectionsRenderer();
+    var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+    var mapOptions = {
+      zoom:7,
+      center: chicago
+    }
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    directionsRenderer.setMap(map);
+}
+
+
+function calcRoute() {
+
+    var start = "St. Louis Arch"
+    var end = "St. Louis City Museum"
+    var request = {
+        origin: start,
+        destination: end,
+        travelMode: "DRIVING"
+    };
+    directionsService.route(request, function(result, status){
+        if (status == "OK"){
+            console.log(result);
+            console.log(result.routes[0].legs[0].duration.text);
+            directionsRenderer.setDirections(result);
+        }
+    });
+
+};
+
+window.addEventListener('load', function () {
+    initMap();
+  })
