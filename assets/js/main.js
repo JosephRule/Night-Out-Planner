@@ -41,10 +41,14 @@ var createEventCard = function(event) {
     var eventLinkEl = $("<a>")
                         .attr("href", event.url)
                         .text("Buy Tickets")
+    var directionsEl = $("<button>")
+                        .addClass("event-button")
+                        .attr("venue", event._embedded.venues[0].name)
+                        .text("Get Directions")
 
 
     cardContentEl.append(eventNameEl, eventDateEl, eventPriceEl, eventVenueEl)
-    eventActionEl.append(eventLinkEl)
+    eventActionEl.append(eventLinkEl, directionsEl)
     eventCardStacked.append(cardContentEl, eventActionEl)
     cardImageEl.append(ImageEl)
     eventCardEl.append(cardImageEl, eventCardStacked)
@@ -61,34 +65,21 @@ var initMap = function() {
       center: chicago
     }
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    console.log(map)
     directionsRenderer.setMap(map);
 };
 
-function newMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: -34.397, lng: 150.644 },
-      zoom: 8,
-    });
-
-  }
 
 function calcRoute(start, end) {
     var directionsService = new google.maps.DirectionsService();
     var directionsRenderer = new google.maps.DirectionsRenderer();
     var map = new google.maps.Map(document.getElementById('map'));
-    console.log(map)
-
     var request = {
         origin: start,
         destination: end,
         travelMode: "DRIVING"
     };
-    console.log(request)
     directionsService.route(request, function(result, status){
         if (status == "OK"){
-            console.log(result);
-            console.log(result.routes[0].legs[0].duration.text);
             directionsRenderer.setDirections(result);
         }
     });
@@ -99,18 +90,18 @@ var address
 var eventCity
 var eventDate
 
-
 window.addEventListener('load', function () {
     initMap();
 });
 
 $(document).on("click", "#search-button", function() {
-
     address = $("#home-address").val()
     eventDate = $("#date").val()
     eventCity = $("#city").val()
 
     getEventsList(eventCity, eventDate)
-
 })
 
+$(document).on("click", ".event-button", function(){
+    calcRoute(address, $(this).attr("venue") + eventCity )
+})
