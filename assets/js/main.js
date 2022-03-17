@@ -1,7 +1,7 @@
 var getEventsList = function(city, startDateTime) {
     var startDateTime = startDateTime + "T00:00:00Z"
     var eventUrl = "https://app.ticketmaster.com/discovery/v2/events.json?apikey="
-                    + ticketMasterCred.CONSUMER_KEY
+                    + "EquftysZFTGWpA9E2cBh6SGULTHz8TYo"
                     + "&city=" + city
                     + "&startDateTime=" + startDateTime
                     + "&sort=date,asc"
@@ -52,7 +52,8 @@ var createEventCard = function(event) {
     $("#right-side-results").append(eventCardEl)
 };
 
-function initMap() {
+
+var initMap = function() {
     var directionsRenderer = new google.maps.DirectionsRenderer();
     var chicago = new google.maps.LatLng(41.850033, -87.6500523);
     var mapOptions = {
@@ -60,13 +61,23 @@ function initMap() {
       center: chicago
     }
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    console.log(map)
     directionsRenderer.setMap(map);
 };
+
+function newMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: -34.397, lng: 150.644 },
+      zoom: 8,
+    });
+
+  }
 
 function calcRoute(start, end) {
     var directionsService = new google.maps.DirectionsService();
     var directionsRenderer = new google.maps.DirectionsRenderer();
     var map = new google.maps.Map(document.getElementById('map'));
+    console.log(map)
 
     var request = {
         origin: start,
@@ -88,15 +99,15 @@ addressString = "738 W Irving Park, Chicago IL"
 eventCity = "Chicago"
 eventDate = "2022-05-05"
 
+
+
 window.addEventListener('load', function () {
     initMap();
     getEventsList(eventCity, eventDate);
 
     setTimeout(function () {
         calcRoute(addressString, "Beat Kitchen Chicago")
+
     }, 5000);
 });
-
-var events = getEventsList("Chicago", "2022-05-05");
-getETAInfo("irvine", "disneyland");
 
