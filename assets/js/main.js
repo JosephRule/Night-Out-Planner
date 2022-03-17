@@ -95,19 +95,22 @@ function calcRoute(start, end) {
     directionsRenderer.setMap(map);
 };
 
-addressString = "738 W Irving Park, Chicago IL"
-eventCity = "Chicago"
-eventDate = "2022-05-05"
-
+var address
+var eventCity
+var eventDate
 
 
 window.addEventListener('load', function () {
     initMap();
-    getEventsList(eventCity, eventDate);
-
-    setTimeout(function () {
-        calcRoute(addressString, "Beat Kitchen Chicago")
-
-    }, 5000);
 });
+
+$(document).on("click", "#search-button", function() {
+
+    address = $("#home-address").val()
+    eventDate = $("#date").val()
+    eventCity = $("#city").val()
+
+    getEventsList(eventCity, eventDate)
+
+})
 
