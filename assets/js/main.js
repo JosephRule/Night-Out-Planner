@@ -23,26 +23,29 @@ var getEventsList = function(city, startDateTime) {
 };
 
 function iniHomeHistory(){
-    var historyList = JSON.parse(localStorage.getItem("home-address-history"));
-    for (var i = 0; i <historyList.length; i++){
-        var historyButtonEl = $("<button>")
-            .attr("value",historyList[i])
-            .addClass("historyButton")
-            .text(historyList[i]);
-            $("#home-address-history").append(historyButtonEl);
+    if (localStorage.getItem("home-address-history") != null) {
+        var historyList = JSON.parse(localStorage.getItem("home-address-history"));
+        for (var i = 0; i <historyList.length; i++){
+            var historyButtonEl = $("<button>")
+                .attr("value",historyList[i])
+                .addClass("historyButton")
+                .text(historyList[i]);
+                $("#home-address-history").append(historyButtonEl);
+        }
     }
 }
 
 function iniEventHistory(){
-    var historyList = JSON.parse(localStorage.getItem("event-history"));
-    for (var i = 0; i <historyList.length; i++){
-        var historyButtonEl = $("<button>")
-            .attr("value",historyList[i])
-            .addClass("eventButton")
-            .text(historyList[i]);
-            $("#event-location-history").append(historyButtonEl);
+    if (localStorage.getItem("event-history") != null) {
+        var historyList = JSON.parse(localStorage.getItem("event-history"));
+        for (var i = 0; i <historyList.length; i++){
+            var historyButtonEl = $("<button>")
+                .attr("value",historyList[i])
+                .addClass("eventButton")
+                .text(historyList[i]);
+                $("#event-location-history").append(historyButtonEl);
+        }
     }
-
 }
 
 iniHomeHistory();
@@ -157,7 +160,7 @@ $(document).on("click", "#search-button", function() {
 
     if (localStorage.getItem("event-history") === null){
         var eventList = [];
-        historyList.push(eventCity);
+        eventList.push(eventCity);
         localStorage.setItem("event-history",JSON.stringify(eventList));
       } else{
         var eventList = JSON.parse(localStorage.getItem("event-history"));
