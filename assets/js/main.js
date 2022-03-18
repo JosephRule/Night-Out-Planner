@@ -80,6 +80,12 @@ function calcRoute(start, end) {
     };
     directionsService.route(request, function(result, status){
         if (status == "OK"){
+            var distance = result.routes[0].legs[0].distance.text;
+            var duration = result.routes[0].legs[0].duration.text;
+            $(".results-row").append("<div>From: "+ start + "</div>");
+            $(".results-row").append("<div>To: " + end + "</div>");
+            $(".results-row").append("<div>Distance: "+ distance +"</div>");
+            $(".results-row").append("<div>Duration: "+ duration +"</div>");
             directionsRenderer.setDirections(result);
         }
     });
