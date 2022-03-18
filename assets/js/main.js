@@ -10,6 +10,7 @@ var getEventsList = function(city, startDateTime) {
         if (response.ok) {
             response.json().then(data =>{
                 eventsList = data._embedded.events;
+                $("#right-side-results").html("");
                 for (var i = 0; i<eventsList.length; i++) {
                     createEventCard(eventsList[i])
                 }
@@ -52,8 +53,8 @@ var createEventCard = function(event) {
     eventCardStacked.append(cardContentEl, eventActionEl)
     cardImageEl.append(ImageEl)
     eventCardEl.append(cardImageEl, eventCardStacked)
-
     $("#right-side-results").append(eventCardEl)
+
 };
 
 
@@ -82,6 +83,7 @@ function calcRoute(start, end) {
         if (status == "OK"){
             var distance = result.routes[0].legs[0].distance.text;
             var duration = result.routes[0].legs[0].duration.text;
+            $(".results-row").html("");
             $(".results-row").append("<div>From: "+ start + "</div>");
             $(".results-row").append("<div>To: " + end + "</div>");
             $(".results-row").append("<div>Distance: "+ distance +"</div>");
