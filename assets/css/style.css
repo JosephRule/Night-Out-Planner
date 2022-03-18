@@ -33,14 +33,13 @@ header{
 
 .map-info-row{
     margin-top: 10px;
+    width: 500px;
+    height: 350px;
+    margin-bottom: 20px;
 }
 
-#map {
-    height: 100%;
-    width: 100%;
-}
 .results-row {
-    margin:20px;
+    margin-top:50px;
     border-style: solid;
     background-color: #ef9a9a;
     height:100px;
