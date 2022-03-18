@@ -1,12 +1,13 @@
 # Night-Out-Planner
 
-Description - Web application to help plan going to events using ticketmaster and google maps api
+Description - Web application to help plan going to events using ticketmaster and google maps api.
 
-User Story - As a person looking to have a good night out, I need to search for events and plan logisitcs so that I can enjoy my night
+User Story - I would like to find a fun event to go to this weekend, but I am not familiar with all the venues in the city to know if an event is worth traveling to. I want to  see events in my city and quickly get directions to the venue to see if the event is worth traveling to.
 
+## Technologies:
 CSS framework - https://materializecss.com/icons.html
-
-APIs:
+JQuery
+APIs -
 * https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2
 
 * https://developers.google.com/maps/documentation/javascript/
