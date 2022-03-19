@@ -28,7 +28,9 @@ function iniHomeHistory(){
         for (var i = 0; i <historyList.length; i++){
             var historyButtonEl = $("<button>")
                 .attr("value",historyList[i])
+                .attr("type", "button")
                 .addClass("historyButton")
+                .addClass("waves-effect waves-light btn-small")
                 .text(historyList[i]);
                 $("#home-address-history").append(historyButtonEl);
         }
@@ -41,7 +43,9 @@ function iniEventHistory(){
         for (var i = 0; i <historyList.length; i++){
             var historyButtonEl = $("<button>")
                 .attr("value",historyList[i])
+                .attr("type", "button")
                 .addClass("eventButton")
+                .addClass("waves-effect waves-light btn-small")
                 .text(historyList[i]);
                 $("#event-location-history").append(historyButtonEl);
         }
@@ -175,4 +179,12 @@ $(document).on("click", "#search-button", function() {
 
 $(document).on("click", ".event-button", function(){
     calcRoute(address, $(this).attr("venue") + eventCity, $(this).attr("value"))
+})
+
+$(document).on("click", ".historyButton", function(){
+    $("#home-address").val($(this).attr("value"));
+})
+
+$(document).on("click", ".eventButton", function(){
+    $("#city").val($(this).attr("value"));
 })
