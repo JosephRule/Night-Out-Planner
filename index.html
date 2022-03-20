@@ -6,61 +6,65 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
-    
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>Night-Out-Planner</title>
   </head>
 
   <body>
-    <header>Night-Out-Planner</header>
-     <!-- main content -->
-    <div id="container" class="row">
-     <!-- left side -->
-      <div id="search-section" class="col s6">
-        <!-- form -->
-        <div class="row">
-          <div class=row>Please enter your address: </div>
-          <form class="col s12">
+      <header>Night-Out-Planner</header>
+      <div id = "container" class="row">
+        <div id = "search-section" class="col s6">
             <div class="row">
-              <div class="home-address col s10">
-                <input id="home-address" class="validate">
-                <label for="home-address">Home address</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col s10">
-                <input id="date" type="date" class="validate">
-                <label for="date">Date</label>
-               </div>
-              </div>
-              <div class = "row" id ="home-address-history">Recent search: </div>
-                <div class="col s10">
-                  <input id="city" type="email" class="validate">
-                  <label for="city">Event City/Location</label>
+                <div class = row>Please enter your address: </div>
+                <form class="col s12">
+                  <div class="row">
+                    <div class="home-address col s10">
+                      <input id="home-address" class="validate">
+                      <label for="home-address">Home address</label>
+                    </div>
+                  </div>
+                  <div class = "row" id ="home-address-history">Recent search: </div>
+
+                  <div class="row">
+                    <div class="col s10">
+                      <input id="date" type="date" class="validate">
+                      <label for="date">Date</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s10">
+                      <input id="city" type="email" class="validate">
+                      <label for="city">Event City/Location</label>
+                    </div>
+                  </div>
+                  <div class = "row" id ="event-location-history">Recent search: </div>
+
+                </form>
+                <div id = "search-button">
+                    <a class="btn btn-floating pulse"><i class="material-icons">Go</i></a>
                 </div>
               </div>
-              <div class = "row" id ="event-location-history">Recent search: </div>
-            </form>
-            <div id="search-button">
-              <a class="btn btn-floating pulse"><i class="material-icons">Go</i></a>
+            
+            <div>Map</div>
+            <div id = "map" class = "map-info-row row">
             </div>
-          </div>
-        <!-- map -->
-        <div>Map</div>
-        <div id="map" class="map-info-row">
+        </div>
+        <div id = "right-side-results" class="col s5">
+          <div id ="right-side-title">Search results</div>
         </div>
       </div>
-      <!-- search results container right side -->
-      <div id="right-side-results" class="col s5">
-        <div id="right-side-title">Search results</div>
-      </div>
-    </div>
 
-    <footer>Created by us~~2022</footer>
+      <footer>Created by us~~2022</footer>
 
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMg3mxxg-5_7Kvh_cWnMjvCKoGH_CwaOo"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
