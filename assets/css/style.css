@@ -16,13 +16,13 @@ header{
 #search-section{
     margin-left: 60px;
     margin-top: 30px;
-    height: 700px;
+    /* height: 2000px; */
     font-weight: bold;
     color:#4db6ac;
 }
 
 #search-button {
-    margin-left:180px;
+    margin-left:260px;
 }
 
 #right-side-title {
@@ -38,12 +38,13 @@ header{
 #map {
     height: 300px;
     margin-right: 90px;
+    
 }
-
 .targetDiv {
     margin:30px;
     border-style: solid;
     background-color: #ef9a9a;
+
 }
 
 footer{
