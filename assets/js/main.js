@@ -58,7 +58,8 @@ iniEventHistory();
 
 
 var createEventCard = function(event,index) {
-    var eventCardEl = $("<div>").addClass("card horizontal")
+
+    var eventCardEl = $("<div>").addClass("card horizontal").attr("id", "eventCard-" + index);
     var cardImageEl = $("<div>").addClass("card-image")
     var ImageEl = $("<img>").attr("src", event.images[0].url)
     var eventCardStacked =$("<div>").addClass("card-stacked")
@@ -178,7 +179,13 @@ $(document).on("click", "#search-button", function() {
 })
 
 $(document).on("click", ".event-button", function(){
-    calcRoute(address, $(this).attr("venue") + eventCity, $(this).attr("value"))
+
+    calcRoute(address, $(this).attr("venue") + " "+ eventCity, $(this).attr("value"))
+    // var index = $(this).attr("value");
+    // var eventCard =$("#eventCard-"+index);
+    
+    // var eventInfo =$("#eventinfo-"+index);
+    // alert(eventCard.html());
 })
 
 $(document).on("click", ".historyButton", function(){
